@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños! ❤️</title>
+    <title>¡Feliz Cumpleaños Negro! ❤️</title>
     <link rel="stylesheet" href="main.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
+
     <header>
-        <h1 id="titulo">¡Feliz Cumpleaños, Amor!</h1>
-        <p>Un pequeño espacio dedicado a nosotros.</p>
+        <h1>¡Feli Pumpe Negro! 🎂</h1>
     </header>
 
-    <main>
-        <section class="contador">
-            <h2>Llevamos juntos:</h2>
-            <div id="timer">Cargando tiempo...</div>
-        </section>
+    <section id="game-container">
+        <h2>Aventura en el C.C.</h2>
+        <p>Usa las flechas o toca los botones para moverte y buscar los objetos.</p>
+        <canvas id="rpgCanvas"></canvas>
+        <div id="dialogo"></div>
+    </section>
 
-        <section class="mensaje">
-            <button onclick="mostrarSorpresa()">¡Haz clic aquí!</button>
-            <p id="texto-sorpresa" class="oculto">Eres lo mejor que me ha pasado. ¡Te amo! 🎂✨</p>
-        </section>
-    </main>
+    <section id="camera-section">
+        <h2>Tu Filtro de Cumple</h2>
+        <div class="video-wrap">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas-filter"></canvas>
+        </div>
+        <button id="snap">¡Explotar Confeti!</button>
+    </section>
+
+    <section id="qr-section">
+        <h2>Un mensaje secreto para ti</h2>
+        <div id="qrcode"></div>
+        <p>Escanéame para una sorpresa final</p>
+    </section>
 
     <script src="script.js"></script>
 </body>
