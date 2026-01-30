@@ -3,38 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Negro! ❤️</title>
+    <title>Para mi Negro ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-
+    <div class="stars"></div>
+    
     <header>
-        <h1>¡Feli Pumpe Negro! 🎂</h1>
+        <h1 class="glow">Feli Pumpe Negro 🎂</h1>
     </header>
 
-    <section id="game-container">
-        <h2>Aventura en el C.C.</h2>
-        <p>Usa las flechas o toca los botones para moverte y buscar los objetos.</p>
-        <canvas id="rpgCanvas"></canvas>
-        <div id="dialogo"></div>
-    </section>
+    <div class="container">
+        <section class="card">
+            <h2>Misión: Encuentra el mensaje</h2>
+            <div id="game-ui">
+                <canvas id="rpgCanvas"></canvas>
+                <div class="controls">
+                    <button class="btn-control" onclick="move('up')">▲</button>
+                    <div>
+                        <button class="btn-control" onclick="move('left')">◀</button>
+                        <button class="btn-control" onclick="move('down')">▼</button>
+                        <button class="btn-control" onclick="move('right')">▶</button>
+                    </div>
+                </div>
+            </div>
+            <div id="dialogo">Usa las flechas para caminar por el C.C.</div>
+        </section>
 
-    <section id="camera-section">
-        <h2>Tu Filtro de Cumple</h2>
-        <div class="video-wrap">
-            <video id="video" autoplay playsinline></video>
-            <canvas id="canvas-filter"></canvas>
-        </div>
-        <button id="snap">¡Explotar Confeti!</button>
-    </section>
+        <section class="card">
+            <h2>Selfie de Cumple</h2>
+            <div class="video-container">
+                <video id="video" autoplay playsinline></video>
+                <div id="filter-overlay">🥳</div>
+            </div>
+            <button class="btn-main" onclick="explotar()">¡SORPRESA! 🎉</button>
+        </section>
 
-    <section id="qr-section">
-        <h2>Un mensaje secreto para ti</h2>
-        <div id="qrcode"></div>
-        <p>Escanéame para una sorpresa final</p>
-    </section>
+        <section class="card qr-card">
+            <h2>Escanea tu regalo</h2>
+            <div id="qrcode"></div>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
