@@ -1,42 +1,66 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fce4ec;
-    color: #4a4a4a;
+    background-color: #1a1a1a;
+    color: white;
+    font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
     padding: 20px;
 }
 
-header {
+section {
     margin-bottom: 50px;
-}
-
-h1 { color: #d81b60; }
-
-.contador {
-    background: white;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: inline-block;
+    border-radius: 20px;
+    background: #2d2d2d;
 }
 
-button {
-    background-color: #d81b60;
+/* Estilo del Juego */
+#rpgCanvas {
+    background: #e0e0e0; /* Color suelo C.C. */
+    border: 4px solid #d81b60;
+    max-width: 100%;
+}
+
+#dialogo {
+    height: 60px;
+    margin-top: 10px;
+    font-style: italic;
+    color: #ffeb3b;
+}
+
+/* Estilo Cámara */
+.video-wrap {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    margin: 0 auto;
+}
+
+#video, #canvas-filter {
+    position: absolute;
+    left: 0; top: 0;
+    width: 320px;
+    height: 240px;
+    border-radius: 10px;
+}
+
+#snap {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #d81b60;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
     cursor: pointer;
-    font-size: 1rem;
-    margin-top: 20px;
+    border-radius: 5px;
 }
 
-.oculto { display: none; }
-
-#texto-sorpresa {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #ad1457;
-    margin-top: 20px;
+/* Estilo QR */
+#qrcode {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 10px;
 }
