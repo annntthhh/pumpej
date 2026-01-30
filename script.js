@@ -1,78 +1,70 @@
-// --- 1. LÓGICA DEL MINI JUEGO RPG ---
+// --- LÓGICA DEL JUEGO RPG ---
 const canvas = document.getElementById('rpgCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = 400;
-canvas.height = 300;
+canvas.width = 400; canvas.height = 400;
 
-let jugador = { x: 50, y: 50, w: 30, h: 50, color: "#8d6e63" }; // Trigueño
-let libro = { x: 300, y: 200, w: 20, h: 20, activo: true };
+let player = { x: 200, y: 200, icon: "🙋🏾‍♂️" }; 
+let items = [
+    { x: 50, y: 50, icon: "📚", msg: "Feliz cumpleaños negro, espero este sea el primero de muchos que vamos a pasar juntos. Te amo inmensamente, y apesar de todo me haces muy feliz. Gracias por dejarme ser tu luz en la oscuridad. Mua." },
+    { x: 320, y: 60, icon: "🛍️", msg: "¡Bienvenido al Centro Comercial de nuestro amor!" },
+    { x: 100, y: 320, icon: "🍿", msg: "Vale por una ida al cine eterna conmigo." }
+];
 
-function dibujarEscena() {
+function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Dibujar Suelo C.C. (Baldosas)
-    ctx.strokeStyle = "#ccc";
-    for(let i=0; i<canvas.width; i+=40) ctx.strokeRect(i, 0, 40, canvas.height);
+    // Dibujar Tiendas/Objetos
+    ctx.font = "30px Arial";
+    items.forEach(item => {
+        ctx.fillText(item.icon, item.x, item.y);
+    });
 
-    // Dibujar Libro
-    if(libro.activo) {
-        ctx.fillStyle = "gold";
-        ctx.fillRect(libro.x, libro.y, libro.w, libro.h);
-    }
-
-    // Dibujar Novio (Trigueño, Mullet, Alto)
-    ctx.fillStyle = jugador.color; // Piel
-    ctx.fillRect(jugador.x, jugador.y, jugador.w, jugador.h);
-    ctx.fillStyle = "#2d1b10"; // Pelo café oscuro
-    ctx.fillRect(jugador.x, jugador.y - 5, jugador.w, 15); // Mullet básico
-    ctx.fillRect(jugador.x + 20, jugador.y + 5, 15, 20); // Parte de atrás mullet
+    // Dibujar Novio
+    ctx.font = "40px Arial";
+    ctx.fillText(player.icon, player.x, player.y);
 }
 
-window.addEventListener('keydown', (e) => {
-    if(e.key === "ArrowUp") jugador.y -= 10;
-    if(e.key === "ArrowDown") jugador.y += 10;
-    if(e.key === "ArrowLeft") jugador.x -= 10;
-    if(e.key === "ArrowRight") jugador.x += 10;
-    
-    // Colisión con libro
-    if(libro.activo && jugador.x < libro.x + libro.w && jugador.x + jugador.w > libro.x && jugador.y < libro.y + libro.h) {
-        document.getElementById('dialogo').innerText = 'Libro: "Feliz cumpleaños negro, espero este sea el primero de muchos... Gracias por dejarme ser tu luz en la oscuridad. Mua"';
-    }
-    dibujarEscena();
-});
-dibujarEscena();
+function move(dir) {
+    const step = 20;
+    if(dir === 'up') player.y -= step;
+    if(dir === 'down') player.y += step;
+    if(dir === 'left') player.x -= step;
+    if(dir === 'right') player.x += step;
 
-// --- 2. LÓGICA DEL FILTRO ---
+    // Check Colisión
+    items.forEach(item => {
+        let dist = Math.hypot(player.x - item.x, player.y - item.y);
+        if(dist < 30) {
+            document.getElementById('dialogo').innerHTML = `<strong style="color: #ff4081">Encontraste algo:</strong> <br> ${item.msg}`;
+            confetti({ particleCount: 50, spread: 60 });
+        }
+    });
+    draw();
+}
+draw();
+
+// --- FILTRO Y CÁMARA ---
 const video = document.getElementById('video');
-const filterCanvas = document.getElementById('canvas-filter');
-const fCtx = filterCanvas.getContext('2d');
-
 navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
     video.srcObject = stream;
+}).catch(() => {
+    document.querySelector('.video-container').innerHTML = "<p>Activa la cámara para el filtro</p>";
 });
 
-function dibujarFiltro() {
-    fCtx.clearRect(0, 0, filterCanvas.width, filterCanvas.height);
-    // Dibujar gorrito simple (Triángulo) sobre la posición estimada de la cabeza
-    fCtx.fillStyle = "red";
-    fCtx.beginPath();
-    fCtx.moveTo(140, 50);
-    fCtx.lineTo(180, 50);
-    fCtx.lineTo(160, 10);
-    fCtx.fill();
-    
-    requestAnimationFrame(dibujarFiltro);
+function explotar() {
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff4081', '#ffeb3b', '#2196f3']
+    });
 }
-dibujarFiltro();
 
-document.getElementById('snap').addEventListener('click', () => {
-    alert("¡BOOM! 🎊 Confeti virtual para el negro más lindo.");
-    // Aquí podrías añadir partículas de colores
-});
-
-// --- 3. LÓGICA DEL QR ---
+// --- QR ---
 new QRCode(document.getElementById("qrcode"), {
-    text: "Eres el amor de mi vida, gracias por existir.",
-    width: 128,
-    height: 128
+    text: "ERES LO MEJOR QUE ME HA PASADO EN LA VIDA. CÓDIGO VÁLIDO POR UN BESO INFINITO.",
+    width: 150,
+    height: 150,
+    colorDark : "#1a1a2e",
+    colorLight : "#ffffff"
 });
