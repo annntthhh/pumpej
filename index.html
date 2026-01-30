@@ -4,50 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi Negro ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <div class="stars"></div>
-    
-    <header>
-        <h1 class="glow">Feli Pumpe Negro 🎂</h1>
-    </header>
+    <div class="main-content">
+        <h1 class="title">Feli Pumpe Negro 🎂</h1>
 
-    <div class="container">
-        <section class="card">
-            <h2>Misión: Encuentra el mensaje</h2>
-            <div id="game-ui">
-                <canvas id="rpgCanvas"></canvas>
-                <div class="controls">
-                    <button class="btn-control" onclick="move('up')">▲</button>
-                    <div>
-                        <button class="btn-control" onclick="move('left')">◀</button>
-                        <button class="btn-control" onclick="move('down')">▼</button>
-                        <button class="btn-control" onclick="move('right')">▶</button>
-                    </div>
+        <div class="game-wrapper">
+            <div id="world">
+                <div id="player">
+                    <div class="mullet"></div>
+                    <div class="face">🏾</div>
                 </div>
             </div>
-            <div id="dialogo">Usa las flechas para caminar por el C.C.</div>
-        </section>
-
-        <section class="card">
-            <h2>Selfie de Cumple</h2>
-            <div class="video-container">
-                <video id="video" autoplay playsinline></video>
-                <div id="filter-overlay">🥳</div>
+            <div class="ui">
+                <div id="msg-box">Camina por el C.C. usando las flechas o botones...</div>
+                <div class="d-pad">
+                    <button onclick="move(0, -1)">▲</button>
+                    <div class="side-btns">
+                        <button onclick="move(-1, 0)">◀</button>
+                        <button onclick="move(1, 0)">▶</button>
+                    </div>
+                    <button onclick="move(0, 1)">▼</button>
+                </div>
             </div>
-            <button class="btn-main" onclick="explotar()">¡SORPRESA! 🎉</button>
-        </section>
+        </div>
 
-        <section class="card qr-card">
-            <h2>Escanea tu regalo</h2>
-            <div id="qrcode"></div>
-        </section>
+        <div class="row">
+            <div class="card camera-card">
+                <div class="video-container">
+                    <video id="video" autoplay playsinline></video>
+                    <div class="emoji-filter">🥳</div>
+                </div>
+                <button class="btn-action" onclick="lanzarConfeti()">¡CELEBRAR! 🎉</button>
+            </div>
+
+            <div class="card qr-card">
+                <div id="qrcode"></div>
+                <p>Escanea tu sorpresa</p>
+            </div>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
