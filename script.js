@@ -1,27 +1,28 @@
-// Lanzar fuegos artificiales al cargar la página
 window.onload = () => {
-    const end = Date.now() + (5 * 1000);
-    const colors = ['#ff4d6d', '#ff758f', '#c9184a'];
+    // Fuegos artificiales al inicio
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
 
     (function frame() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return;
+
         confetti({
-            particleCount: 2,
+            particleCount: 3,
             angle: 60,
             spread: 55,
-            origin: { x: 0 },
-            colors: colors
+            origin: { x: 0, y: 0.7 },
+            colors: ['#ffafbd', '#ffc3a0', '#ff4d6d']
         });
         confetti({
-            particleCount: 2,
+            particleCount: 3,
             angle: 120,
             spread: 55,
-            origin: { x: 1 },
-            colors: colors
+            origin: { x: 1, y: 0.7 },
+            colors: ['#ffafbd', '#ffc3a0', '#ff4d6d']
         });
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
+        requestAnimationFrame(frame);
     }());
 };
 
@@ -30,12 +31,12 @@ function abrirCarta() {
     wrapper.classList.toggle('open');
 
     if (wrapper.classList.contains('open')) {
-        // Confeti extra al abrir
+        // Explosión de confeti suave al abrir
         confetti({
-            particleCount: 100,
+            particleCount: 150,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ['#ff4d6d', '#ffffff', '#ff0000']
+            colors: ['#ffccd5', '#ff4d6d', '#ffffff']
         });
     }
 }
