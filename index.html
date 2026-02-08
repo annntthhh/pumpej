@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Amor!</title>
+    <title>¡Feliz Cumpleaños Mi Amor!</title>
     <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <div class="globos-container">
-        <div class="globo">🎈</div>
-        <div class="globo">💖</div>
-        <div class="globo">🎈</div>
-        <div class="globo">✨</div>
-        <div class="globo">🎈</div>
+    <div class="globos-fondo">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
     </div>
 
-    <div class="centro">
+    <div class="container">
         <h1 class="titulo">¡Feliz Cumpleaños!</h1>
         
-        <div class="sobre-contenedor" onclick="abrirCarta()">
-            <div class="sobre">
-                <div class="tapa"></div>
-                <div class="corazon-sello">❤</div>
-                <div class="carta">
-                    <div class="contenido-carta">
-                        <h2>Para mi niño favorito:</h2>
-                        <p>Eres la casualidad más bonita de mi vida. Gracias por hacerme tan feliz. ¡Que este día sea tan increíble como tú!</p>
-                        <p class="firma">Te amo con todo mi corazón ❤️</p>
+        <div class="envelope-wrapper" onclick="abrirCarta()">
+            <div class="envelope">
+                <div class="front"></div>
+                <div class="top"></div>
+                <div class="card">
+                    <div class="text">
+                        <h2>Mi Amor,</h2>
+                        <p>Eres lo más increíble que me ha pasado. Gracias por cada sonrisa y por compartir tu vida conmigo.</p>
+                        <p class="love">¡Te amo infinitamente! ❤️</p>
                     </div>
                 </div>
             </div>
+            <div class="heart"></div>
         </div>
         
-        <p class="indicador">Toca el corazón para abrir</p>
+        <p class="hint">Haz clic en el corazón para abrir</p>
     </div>
 
     <script src="script.js"></script>
