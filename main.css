@@ -16,23 +16,23 @@ body {
     overflow: hidden;
 }
 
-.contenedor-fiesta {
+.escena {
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    text-align: center;
+    width: 100%;
 }
 
 .titulo {
     font-family: 'Dancing Script', cursive;
     color: var(--texto);
-    font-size: clamp(2.2rem, 8vw, 4rem);
-    margin-bottom: 40px;
-    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    margin-bottom: 50px;
+    text-align: center;
 }
 
-/* --- INFESTACIÓN DE GLOBOS --- */
+/* --- Globos Reales --- */
 .balloon {
     position: absolute;
     width: 100px;
@@ -40,46 +40,28 @@ body {
     background: radial-gradient(circle at 30% 30%, #ff85a1, #ff4d6d);
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
     bottom: -250px;
-    animation: flotar 10s infinite ease-in;
+    animation: flotar 12s infinite ease-in;
     box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
 }
 
-/* Distribución aleatoria de globos */
-.balloon:nth-child(1) { left: 5%; animation-duration: 8s; }
-.balloon:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; background: #ffd166; }
-.balloon:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 1s; }
-.balloon:nth-child(4) { left: 45%; animation-duration: 14s; background: #06d6a0; }
-.balloon:nth-child(5) { left: 60%; animation-duration: 9s; animation-delay: 3s; background: #118ab2; }
-.balloon:nth-child(6) { left: 75%; animation-duration: 11s; }
-.balloon:nth-child(7) { left: 85%; animation-duration: 13s; animation-delay: 4s; background: #ffd166; }
-.balloon:nth-child(8) { left: 95%; animation-duration: 7s; }
+.balloon:nth-child(even) { background: radial-gradient(circle at 30% 30%, #ffd166, #ff9f1c); }
+
+.balloon:nth-child(1) { left: 10%; animation-duration: 10s; }
+.balloon:nth-child(2) { left: 30%; animation-duration: 15s; animation-delay: 2s; }
+.balloon:nth-child(3) { left: 50%; animation-duration: 12s; animation-delay: 4s; }
+.balloon:nth-child(4) { left: 70%; animation-duration: 18s; }
+.balloon:nth-child(5) { left: 90%; animation-duration: 11s; animation-delay: 1s; }
 
 @keyframes flotar {
-    0% { transform: translateY(0) rotate(0); }
-    100% { transform: translateY(-140vh) rotate(30deg); }
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-130vh) rotate(20deg); }
 }
 
-/* --- EL GORRITO GIGANTE --- */
-.gorrito {
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    font-size: 8rem; /* ¡GRANDE! */
-    z-index: 100;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-}
-
-.sobre-wrapper.open .gorrito {
-    transform: translateX(-50%) scale(1) translateY(-120px);
-}
-
-/* --- SOBRE Y CARTA --- */
+/* --- El Sobre --- */
 .sobre-wrapper {
     position: relative;
-    width: clamp(280px, 90vw, 350px);
-    height: 220px;
+    width: 300px;
+    height: 200px;
     cursor: pointer;
 }
 
@@ -88,8 +70,8 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--rosa-claro);
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 .frente {
@@ -98,7 +80,7 @@ body {
     background: var(--rosa-claro);
     clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
     z-index: 3;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 10px 10px;
 }
 
 .solapa {
@@ -108,38 +90,41 @@ body {
     clip-path: polygon(0 0, 50% 50%, 100% 0);
     z-index: 4;
     transform-origin: top;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease;
 }
 
-.sobre-wrapper.open .solapa { transform: rotateX(180deg); z-index: 1; }
+.sobre-wrapper.open .solapa {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
 
 .carta {
     position: absolute;
-    bottom: 10px; left: 5%;
-    width: 90%; height: 190px;
+    bottom: 5px;
+    left: 10px;
+    width: 280px;
+    height: 180px;
     background: white;
-    padding: 25px;
+    padding: 20px;
     box-sizing: border-box;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
     z-index: 2;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border-radius: 5px;
 }
 
 .sobre-wrapper.open .carta {
-    transform: translateY(-150px);
-    height: 260px;
+    transform: translateY(-130px);
+    height: 240px;
     z-index: 5;
 }
 
-.mensaje h2 { font-family: 'Dancing Script'; color: var(--texto); font-size: 2rem; margin: 0; }
-.mensaje p { font-size: 1rem; color: #444; line-height: 1.5; margin-top: 15px; }
-.love { font-weight: bold; color: var(--rosa-fuerte); font-size: 1.2rem; }
-
-.corazon {
+/* --- Corazón Corregido (No se deforma) --- */
+.corazon-sello {
     position: absolute;
-    top: 45%; left: 50%;
-    width: 40px; height: 40px;
+    top: 45%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
     background: #ef233c;
     transform: translate(-50%, -50%) rotate(45deg);
     z-index: 6;
@@ -147,16 +132,25 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.corazon::before, .corazon::after {
+.corazon-sello::before, .corazon-sello::after {
     content: "";
     position: absolute;
-    width: 40px; height: 40px;
+    width: 40px;
+    height: 40px;
     background: #ef233c;
     border-radius: 50%;
 }
-.corazon::before { left: -20px; }
-.corazon::after { top: -20px; }
 
-.sobre-wrapper.open .corazon { opacity: 0; transform: translate(-50%, -100px) scale(0); }
+.corazon-sello::before { left: -20px; }
+.corazon-sello::after { top: -20px; }
 
-.instruccion { margin-top: 40px; color: var(--texto); font-weight: bold; font-size: 1.1rem; }
+.sobre-wrapper.open .corazon-sello {
+    opacity: 0;
+    transform: translate(-50%, -150px) rotate(45deg) scale(0);
+}
+
+.instruccion {
+    margin-top: 35px;
+    color: var(--texto);
+    font-weight: 600;
+}
