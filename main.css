@@ -1,8 +1,8 @@
 :root {
-    --bg-alegre: #ffdde1;
-    --sobre-claro: #ffccd5;
-    --sobre-oscuro: #ffb3c1;
-    --color-texto: #c9184a;
+    --color-sobre: #ffcad4;
+    --color-sobre-oscuro: #f4abb7;
+    --color-texto: #b91d47;
+    --bg-gradiente: radial-gradient(circle, #fff0f3 0%, #ffc2d1 100%);
 }
 
 body {
@@ -11,148 +11,143 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, #ffffff 0%, #ffafbd 100%);
+    background: var(--bg-gradiente);
     font-family: 'Quicksand', sans-serif;
     overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
 }
 
 .titulo {
     font-family: 'Dancing Script', cursive;
     color: var(--color-texto);
-    font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 40px;
-    z-index: 10;
-    text-shadow: 2px 4px 6px rgba(0,0,0,0.05);
+    font-size: 3.8rem;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
 }
 
-/* --- Globos Reales y Grandes --- */
+/* --- Globos Reales --- */
 .balloon {
     position: absolute;
-    width: 120px;
-    height: 150px;
+    width: 110px;
+    height: 140px;
     background: radial-gradient(circle at 30% 30%, #ff85a1, #ff4d6d);
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
     bottom: -200px;
-    animation: flotar 15s infinite linear;
-    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+    animation: floating 12s infinite ease-in;
 }
 
 .balloon::after {
     content: "";
     position: absolute;
-    width: 2px;
-    height: 120px;
-    background: rgba(255,255,255,0.4);
-    top: 150px;
+    width: 1px;
+    height: 100px;
+    background: rgba(0,0,0,0.1);
+    top: 140px;
     left: 50%;
 }
 
-.balloon:nth-child(1) { left: 5%; animation-duration: 12s; background: radial-gradient(circle at 30% 30%, #ffb3c1, #ff758f); }
-.balloon:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; width: 140px; height: 170px; }
-.balloon:nth-child(3) { left: 50%; animation-duration: 14s; animation-delay: 4s; }
-.balloon:nth-child(4) { left: 75%; animation-duration: 20s; width: 130px; height: 160px; background: radial-gradient(circle at 30% 30%, #ffd166, #ff9f1c); }
-.balloon:nth-child(5) { left: 90%; animation-duration: 16s; animation-delay: 1s; }
+.balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+.balloon:nth-child(2) { left: 35%; animation-delay: 3s; width: 130px; height: 160px; }
+.balloon:nth-child(3) { left: 70%; animation-delay: 1s; background: radial-gradient(circle at 30% 30%, #ffd166, #ff9f1c); }
+.balloon:nth-child(4) { left: 85%; animation-delay: 5s; }
 
-@keyframes flotar {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(-125vh) rotate(15deg); }
+@keyframes floating {
+    0% { transform: translateY(0) rotate(0); }
+    100% { transform: translateY(-130vh) rotate(20deg); }
 }
 
-/* --- Sobre Completo y Estilizado --- */
+/* --- El Sobre (Centrado y Limpio) --- */
 .envelope-wrapper {
     position: relative;
-    width: 320px;
-    height: 220px;
-    background: var(--sobre-claro);
+    width: 300px;
+    height: 200px;
+    background-color: var(--color-sobre);
     border-radius: 0 0 10px 10px;
     cursor: pointer;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.envelope {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.top-flap {
+.envelope-wrapper::before { /* Solapa superior */
+    content: "";
     position: absolute;
     top: 0;
-    width: 0; height: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-top: 130px solid var(--sobre-oscuro);
+    z-index: 2;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 120px solid var(--color-sobre-oscuro);
     transform-origin: top;
-    transition: transform 0.5s ease;
-    z-index: 4;
+    transition: all 0.5s ease;
 }
 
-.side-flaps {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: var(--sobre-claro);
-    clip-path: polygon(0% 0%, 50% 50%, 0% 100%, 100% 100%, 50% 50%, 100% 0%);
-    z-index: 3;
-}
-
-.bottom-flap {
-    position: absolute;
-    bottom: 0;
-    width: 0; height: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-bottom: 120px solid var(--sobre-claro);
-    z-index: 3;
+.envelope-wrapper.open::before {
+    transform: rotateX(180deg);
+    z-index: 0;
 }
 
 .paper {
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     left: 10px;
-    width: 300px;
-    height: 190px;
+    width: 280px;
+    height: 180px;
     background: white;
-    border-radius: 5px;
-    z-index: 2;
-    transition: transform 0.6s ease;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-}
-
-.message h2 { font-family: 'Dancing Script'; color: var(--color-texto); margin: 0; }
-.message p { font-size: 0.95rem; color: #555; line-height: 1.4; }
-.signature { font-weight: bold; color: var(--color-texto); text-align: right; }
-
-/* Animación Apertura */
-.envelope-wrapper.open .top-flap {
-    transform: rotateX(180deg);
+    transition: all 0.5s ease;
     z-index: 1;
+    border-radius: 5px;
 }
 
 .envelope-wrapper.open .paper {
-    transform: translateY(-140px);
-    height: 250px;
-    z-index: 5;
+    transform: translateY(-130px);
+    height: 240px;
+    z-index: 3;
 }
 
-.heart-seal {
+.message { text-align: center; }
+.message h2 { font-family: 'Dancing Script'; color: var(--color-texto); margin: 0; }
+.message p { font-size: 0.9rem; color: #444; line-height: 1.4; }
+.love { font-weight: bold; color: #ff4d6d; margin-top: 10px; }
+
+/* Corazón de Cierre */
+.heart {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    color: #ef233c;
-    z-index: 6;
+    width: 35px;
+    height: 35px;
+    background: #ef233c;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 4;
     transition: 0.4s;
 }
 
-.envelope-wrapper.open .heart-seal {
-    opacity: 0;
-    transform: translate(-50%, -150px) scale(0);
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: #ef233c;
+    border-radius: 50%;
 }
 
-.instruccion { text-align: center; color: var(--color-texto); font-weight: bold; margin-top: 30px; animation: bounce 2s infinite; }
+.heart::before { left: -18px; }
+.heart::after { top: -18px; }
 
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.envelope-wrapper.open .heart {
+    opacity: 0;
+    transform: translate(-50%, -150px) rotate(45deg) scale(0);
+}
+
+.hint {
+    margin-top: 30px;
+    color: var(--color-texto);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
