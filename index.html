@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Mi Amor!</title>
+    <title>¡Feliz Cumpleaños Amor!</title>
     <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <div class="globos-fondo">
+    <div class="background-decor">
         <div class="balloon"></div>
         <div class="balloon"></div>
         <div class="balloon"></div>
@@ -18,25 +18,26 @@
         <div class="balloon"></div>
     </div>
 
-    <div class="container">
-        <h1 class="titulo">¡Feliz Cumpleaños!</h1>
+    <div class="main-content">
+        <h1 class="titulo">¡Feliz Cumpleaños, Mi Amor!</h1>
         
         <div class="envelope-wrapper" onclick="abrirCarta()">
             <div class="envelope">
-                <div class="front"></div>
-                <div class="top"></div>
-                <div class="card">
-                    <div class="text">
-                        <h2>Mi Amor,</h2>
-                        <p>Eres lo más increíble que me ha pasado. Gracias por cada sonrisa y por compartir tu vida conmigo.</p>
-                        <p class="love">¡Te amo infinitamente! ❤️</p>
+                <div class="bottom-flap"></div>
+                <div class="side-flaps"></div>
+                <div class="paper">
+                    <div class="message">
+                        <h2>Para mi vida:</h2>
+                        <p>Eres la persona que ilumina mis días. En este cumpleaños quiero recordarte lo mucho que te amo y lo especial que eres para mí.</p>
+                        <p class="signature">Por siempre juntos ❤️</p>
                     </div>
                 </div>
+                <div class="top-flap"></div>
             </div>
-            <div class="heart"></div>
+            <div class="heart-seal">❤</div>
         </div>
         
-        <p class="hint">Haz clic en el corazón para abrir</p>
+        <p class="instruccion">Toca el corazón para abrir tu sorpresa</p>
     </div>
 
     <script src="script.js"></script>
