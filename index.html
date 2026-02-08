@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños Amor!</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <div class="decoraciones">
+    <div class="globos-container">
         <div class="globo">🎈</div>
+        <div class="globo">💖</div>
         <div class="globo">🎈</div>
-        <div class="globo">🎈</div>
+        <div class="globo">✨</div>
         <div class="globo">🎈</div>
     </div>
 
-    <main class="contenedor">
-        <h1 class="titulo">¡Feliz Cumpleaños, Mi Vida!</h1>
+    <div class="centro">
+        <h1 class="titulo">¡Feliz Cumpleaños!</h1>
         
-        <div class="sobre-wrapper" onclick="abrirCarta()">
+        <div class="sobre-contenedor" onclick="abrirCarta()">
             <div class="sobre">
                 <div class="tapa"></div>
-                <div class="corazon">❤️</div>
+                <div class="corazon-sello">❤</div>
                 <div class="carta">
-                    <p>Escribe aquí tu mensaje más lindo... <br> Eres lo mejor que me ha pasado. ❤️</p>
+                    <div class="contenido-carta">
+                        <h2>Para mi niño favorito:</h2>
+                        <p>Eres la casualidad más bonita de mi vida. Gracias por hacerme tan feliz. ¡Que este día sea tan increíble como tú!</p>
+                        <p class="firma">Te amo con todo mi corazón ❤️</p>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <p class="instruccion">Haz clic en el corazón para abrir</p>
-    </main>
+        <p class="indicador">Toca el corazón para abrir</p>
+    </div>
 
     <script src="script.js"></script>
 </body>
