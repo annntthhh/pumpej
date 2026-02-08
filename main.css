@@ -1,7 +1,8 @@
 :root {
-    --color-sobre: #ffccd5;
-    --color-sobre-oscuro: #ffb3c1;
-    --color-texto: #b91d47;
+    --rosa-claro: #ffccd5;
+    --rosa-medio: #ffafbd;
+    --rosa-fuerte: #ff4d6d;
+    --texto: #b91d47;
 }
 
 body {
@@ -15,133 +16,147 @@ body {
     overflow: hidden;
 }
 
-.wrapper {
+.contenedor-fiesta {
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    width: 90%; /* Para que no pegue a los bordes en móvil */
+    text-align: center;
 }
 
 .titulo {
     font-family: 'Dancing Script', cursive;
-    color: var(--color-texto);
-    font-size: clamp(2.5rem, 8vw, 3.8rem); /* Tamaño fluido */
-    text-align: center;
+    color: var(--texto);
+    font-size: clamp(2.2rem, 8vw, 4rem);
     margin-bottom: 40px;
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
 }
 
-/* --- Globos --- */
+/* --- INFESTACIÓN DE GLOBOS --- */
 .balloon {
     position: absolute;
-    width: 80px;
-    height: 100px;
+    width: 100px;
+    height: 130px;
     background: radial-gradient(circle at 30% 30%, #ff85a1, #ff4d6d);
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    bottom: -200px;
-    animation: floating 12s infinite ease-in;
-    opacity: 0.8;
+    bottom: -250px;
+    animation: flotar 10s infinite ease-in;
+    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
 }
 
-@keyframes floating {
+/* Distribución aleatoria de globos */
+.balloon:nth-child(1) { left: 5%; animation-duration: 8s; }
+.balloon:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; background: #ffd166; }
+.balloon:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 1s; }
+.balloon:nth-child(4) { left: 45%; animation-duration: 14s; background: #06d6a0; }
+.balloon:nth-child(5) { left: 60%; animation-duration: 9s; animation-delay: 3s; background: #118ab2; }
+.balloon:nth-child(6) { left: 75%; animation-duration: 11s; }
+.balloon:nth-child(7) { left: 85%; animation-duration: 13s; animation-delay: 4s; background: #ffd166; }
+.balloon:nth-child(8) { left: 95%; animation-duration: 7s; }
+
+@keyframes flotar {
     0% { transform: translateY(0) rotate(0); }
-    100% { transform: translateY(-130vh) rotate(20deg); }
+    100% { transform: translateY(-140vh) rotate(30deg); }
 }
 
-/* --- Sobre Rediseñado y Centrado --- */
-.envelope-wrapper {
-    position: relative;
-    width: clamp(260px, 80vw, 320px); /* Ajustable al móvil */
-    height: 200px;
-    background-color: var(--color-sobre);
-    border-radius: 0 0 10px 10px;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
-.envelope-wrapper::before {
-    content: "";
+/* --- EL GORRITO GIGANTE --- */
+.gorrito {
     position: absolute;
-    top: 0;
-    z-index: 4;
-    border-left: clamp(130px, 40vw, 160px) solid transparent;
-    border-right: clamp(130px, 40vw, 160px) solid transparent;
-    border-top: 120px solid var(--color-sobre-oscuro);
-    transform-origin: top;
-    transition: all 0.5s ease-in-out;
-}
-
-.envelope-wrapper.open::before {
-    transform: rotateX(180deg);
-    z-index: 0;
-}
-
-.paper {
-    position: absolute;
-    bottom: 5px;
-    left: 2.5%;
-    width: 95%;
-    height: 180px;
-    background: white;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: all 0.5s ease;
-    z-index: 2;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.envelope-wrapper.open .paper {
-    transform: translateY(-130px);
-    height: 240px;
-}
-
-.message h2 { font-family: 'Dancing Script'; color: var(--color-texto); margin: 0; }
-.message p { font-size: 0.9rem; color: #444; line-height: 1.4; }
-.love { font-weight: bold; color: #ff4d6d; margin-top: 10px; }
-
-/* Corazón */
-.heart {
-    position: absolute;
-    top: 50%;
+    top: -100px;
     left: 50%;
-    width: 30px;
-    height: 30px;
+    transform: translateX(-50%) scale(0);
+    font-size: 8rem; /* ¡GRANDE! */
+    z-index: 100;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.sobre-wrapper.open .gorrito {
+    transform: translateX(-50%) scale(1) translateY(-120px);
+}
+
+/* --- SOBRE Y CARTA --- */
+.sobre-wrapper {
+    position: relative;
+    width: clamp(280px, 90vw, 350px);
+    height: 220px;
+    cursor: pointer;
+}
+
+.sobre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--rosa-claro);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.frente {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--rosa-claro);
+    clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+    z-index: 3;
+    border-radius: 0 0 15px 15px;
+}
+
+.solapa {
+    position: absolute;
+    top: 0; width: 100%; height: 100%;
+    background: var(--rosa-medio);
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+}
+
+.sobre-wrapper.open .solapa { transform: rotateX(180deg); z-index: 1; }
+
+.carta {
+    position: absolute;
+    bottom: 10px; left: 5%;
+    width: 90%; height: 190px;
+    background: white;
+    padding: 25px;
+    box-sizing: border-box;
+    transition: transform 0.6s ease;
+    z-index: 2;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.sobre-wrapper.open .carta {
+    transform: translateY(-150px);
+    height: 260px;
+    z-index: 5;
+}
+
+.mensaje h2 { font-family: 'Dancing Script'; color: var(--texto); font-size: 2rem; margin: 0; }
+.mensaje p { font-size: 1rem; color: #444; line-height: 1.5; margin-top: 15px; }
+.love { font-weight: bold; color: var(--rosa-fuerte); font-size: 1.2rem; }
+
+.corazon {
+    position: absolute;
+    top: 45%; left: 50%;
+    width: 40px; height: 40px;
     background: #ef233c;
     transform: translate(-50%, -50%) rotate(45deg);
-    z-index: 5;
-    transition: 0.4s;
+    z-index: 6;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.heart::before, .heart::after {
+.corazon::before, .corazon::after {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 40px; height: 40px;
     background: #ef233c;
     border-radius: 50%;
 }
-.heart::before { left: -15px; }
-.heart::after { top: -15px; }
+.corazon::before { left: -20px; }
+.corazon::after { top: -20px; }
 
-.envelope-wrapper.open .heart {
-    opacity: 0;
-    transform: translate(-50%, -150px) rotate(45deg) scale(0);
-}
+.sobre-wrapper.open .corazon { opacity: 0; transform: translate(-50%, -100px) scale(0); }
 
-.hint {
-    margin-top: 30px;
-    color: var(--color-texto);
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* --- Ajustes para Celular --- */
-@media (max-width: 480px) {
-    .balloon { width: 60px; height: 80px; }
-    .envelope-wrapper.open .paper {
-        transform: translateY(-110px);
-        height: 220px;
-    }
-}
+.instruccion { margin-top: 40px; color: var(--texto); font-weight: bold; font-size: 1.1rem; }
