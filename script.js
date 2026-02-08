@@ -1,56 +1,50 @@
-// CONFIGURACIÓN JUEGO
-const world = document.getElementById('world');
-const player = document.getElementById('player');
-const msgBox = document.getElementById('msg-box');
+// 1. Fuegos artificiales y confeti al entrar a la página
+window.onload = () => {
+    lanzarFuegosArtificiales();
+};
 
-let posX = 150;
-let posY = 150;
+function lanzarFuegosArtificiales() {
+    const duracion = 5 * 1000;
+    const fin = Date.now() + duracion;
 
-const items = [
-    { x: 50, y: 50, icon: '📖', text: 'Feliz cumpleaños negro... (tu mensaje largo aquí)', found: false },
-    { x: 280, y: 50, icon: '🛍️', text: 'Estamos en el C.C. ¡Busca tu regalo!', found: false },
-    { x: 150, y: 280, icon: '💎', text: 'Gracias por ser mi luz en la oscuridad. Mua.', found: false }
-];
+    (function frame() {
+        // Explosión izquierda
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.8 },
+            colors: ['#ff4d6d', '#ff85a1', '#ffffff']
+        });
+        // Explosión derecha
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.8 },
+            colors: ['#ff4d6d', '#ff85a1', '#ffffff']
+        });
 
-// Crear items en el mundo
-items.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'item';
-    div.innerHTML = item.icon;
-    div.style.left = item.x + 'px';
-    div.style.top = item.y + 'px';
-    world.appendChild(div);
-});
-
-function move(dx, dy) {
-    posX += dx * 30;
-    posY += dy * 30;
-
-    // Límites
-    posX = Math.max(0, Math.min(310, posX));
-    posY = Math.max(0, Math.min(310, posY));
-
-    player.style.left = posX + 'px';
-    player.style.top = posY + 'px';
-
-    // Colisiones
-    items.forEach(item => {
-        if (!item.found && Math.abs(posX - item.x) < 30 && Math.abs(posY - item.y) < 30) {
-            item.found = true;
-            msgBox.innerHTML = `<strong>¡ENCONTRADO!</strong><br>${item.text}`;
-            lanzarConfeti();
+        if (Date.now() < fin) {
+            requestAnimationFrame(frame);
         }
-    });
+    }());
 }
 
-// FILTRO Y QR
-navigator.mediaDevices.getUserMedia({ video: true }).then(s => document.getElementById('video').srcObject = s);
+// 2. Función para abrir la carta
+function abrirCarta() {
+    const sobre = document.querySelector('.sobre-contenedor');
+    sobre.classList.toggle('abierto');
 
-function lanzarConfeti() {
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    // Confeti de corazones al abrir
+    if (sobre.classList.contains('abierto')) {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            scalar: 1.2,
+            shapes: ['circle'], // Simula pétalos o burbujas
+            colors: ['#ff0000', '#ff4d6d', '#ff85a1']
+        });
+    }
 }
-
-new QRCode(document.getElementById("qrcode"), {
-    text: "TE AMO NEGRO. ERES EL MEJOR.",
-    width: 120, height: 120
-});
