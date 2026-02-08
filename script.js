@@ -1,5 +1,4 @@
 window.onload = () => {
-    // Fuegos artificiales al abrir la página
     const end = Date.now() + 5000;
 
     (function frame() {
@@ -29,9 +28,8 @@ function abrirCarta() {
     envelope.classList.toggle('open');
 
     if (envelope.classList.contains('open')) {
-        // Confeti al abrir
         confetti({
-            particleCount: 100,
+            particleCount: 80,
             spread: 70,
             origin: { y: 0.6 },
             colors: ['#ff4d6d', '#ffcad4', '#ffffff']
