@@ -1,50 +1,41 @@
-// 1. Fuegos artificiales y confeti al entrar a la página
+// Lanzar fuegos artificiales al cargar la página
 window.onload = () => {
-    lanzarFuegosArtificiales();
-};
-
-function lanzarFuegosArtificiales() {
-    const duracion = 5 * 1000;
-    const fin = Date.now() + duracion;
+    const end = Date.now() + (5 * 1000);
+    const colors = ['#ff4d6d', '#ff758f', '#c9184a'];
 
     (function frame() {
-        // Explosión izquierda
         confetti({
-            particleCount: 5,
+            particleCount: 2,
             angle: 60,
             spread: 55,
-            origin: { x: 0, y: 0.8 },
-            colors: ['#ff4d6d', '#ff85a1', '#ffffff']
+            origin: { x: 0 },
+            colors: colors
         });
-        // Explosión derecha
         confetti({
-            particleCount: 5,
+            particleCount: 2,
             angle: 120,
             spread: 55,
-            origin: { x: 1, y: 0.8 },
-            colors: ['#ff4d6d', '#ff85a1', '#ffffff']
+            origin: { x: 1 },
+            colors: colors
         });
 
-        if (Date.now() < fin) {
+        if (Date.now() < end) {
             requestAnimationFrame(frame);
         }
     }());
-}
+};
 
-// 2. Función para abrir la carta
 function abrirCarta() {
-    const sobre = document.querySelector('.sobre-contenedor');
-    sobre.classList.toggle('abierto');
+    const wrapper = document.querySelector('.envelope-wrapper');
+    wrapper.classList.toggle('open');
 
-    // Confeti de corazones al abrir
-    if (sobre.classList.contains('abierto')) {
+    if (wrapper.classList.contains('open')) {
+        // Confeti extra al abrir
         confetti({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 },
-            scalar: 1.2,
-            shapes: ['circle'], // Simula pétalos o burbujas
-            colors: ['#ff0000', '#ff4d6d', '#ff85a1']
+            colors: ['#ff4d6d', '#ffffff', '#ff0000']
         });
     }
 }
