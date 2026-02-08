@@ -1,8 +1,7 @@
 :root {
-    --rosa-suave: #ffe5ec;
-    --rosa-fuerte: #ff4d6d;
-    --rosa-oscuro: #c9184a;
-    --blanco: #ffffff;
+    --primary: #ff4d6d;
+    --secondary: #ff758f;
+    --bg: #fff0f3;
 }
 
 body {
@@ -11,128 +10,154 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, var(--rosa-suave) 0%, #fb6f92 100%);
+    background-color: var(--bg);
     font-family: 'Quicksand', sans-serif;
     overflow: hidden;
 }
 
 .titulo {
     font-family: 'Dancing Script', cursive;
-    color: var(--rosa-oscuro);
-    font-size: 3.8rem;
+    color: #c9184a;
+    font-size: 4rem;
     text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-}
-
-/* --- Globos Flotantes --- */
-.globos-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.globo {
-    position: absolute;
-    bottom: -100px;
-    font-size: 3rem;
-    animation: flotar 15s infinite ease-in;
-}
-
-@keyframes flotar {
-    0% { transform: translateY(0) rotate(0); opacity: 1; }
-    100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
-}
-
-/* Diferentes posiciones para los globos */
-.globo:nth-child(1) { left: 10%; animation-duration: 12s; }
-.globo:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; }
-.globo:nth-child(3) { left: 50%; animation-duration: 14s; animation-delay: 5s; }
-.globo:nth-child(4) { left: 75%; animation-duration: 16s; animation-delay: 1s; }
-.globo:nth-child(5) { left: 90%; animation-duration: 13s; animation-delay: 3s; }
-
-/* --- La Carta y el Sobre --- */
-.sobre-contenedor {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    background: var(--rosa-fuerte);
-    border-radius: 0 0 10px 10px;
-    cursor: pointer;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 50px;
     z-index: 10;
 }
 
-.tapa {
+/* --- Globos Reales --- */
+.balloon {
+    position: absolute;
+    width: 100px;
+    height: 125px;
+    background: radial-gradient(circle at 30% 30%, #ff85a1, #ff4d6d);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    bottom: -150px;
+    z-index: 1;
+    animation: floating 15s infinite linear;
+    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), 5px 15px 30px rgba(0,0,0,0.1);
+}
+
+.balloon::after { /* Hilo del globo */
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: rgba(0,0,0,0.1);
+    top: 125px;
+    left: 50%;
+}
+
+.balloon:nth-child(1) { left: 10%; animation-duration: 12s; }
+.balloon:nth-child(2) { left: 30%; width: 120px; height: 150px; animation-duration: 18s; animation-delay: 2s; }
+.balloon:nth-child(3) { left: 60%; animation-duration: 14s; animation-delay: 5s; }
+.balloon:nth-child(4) { left: 85%; width: 110px; height: 140px; animation-duration: 16s; }
+
+@keyframes floating {
+    0% { transform: translateY(0) rotate(0); }
+    100% { transform: translateY(-120vh) rotate(20deg); }
+}
+
+/* --- Carta Mejorada --- */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: var(--secondary);
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.4s;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.envelope .top {
     position: absolute;
     top: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 120px solid var(--primary);
+    transform-origin: top;
+    transition: transform 0.4s 0.2s;
+    z-index: 4;
+}
+
+.envelope .front {
+    position: absolute;
     width: 0; height: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 120px solid #ff758f;
-    transform-origin: top;
-    transition: transform 0.6s ease;
-    z-index: 30;
+    border-bottom: 100px solid #ff85a1;
+    bottom: 0;
+    z-index: 3;
 }
 
-.corazon-sello {
+.card {
     position: absolute;
-    top: 40%;
-    left: 45%;
-    font-size: 2.5rem;
-    color: var(--rosa-oscuro);
-    z-index: 35;
-    transition: 0.3s;
-}
-
-.carta {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 280px;
-    height: 180px;
-    background: var(--blanco);
-    border-radius: 5px;
-    transition: transform 0.6s ease;
-    z-index: 20;
+    background: white;
+    width: 90%;
+    height: 85%;
+    top: 5%;
+    left: 5%;
     padding: 20px;
     box-sizing: border-box;
-    overflow: hidden;
+    transition: 0.5s;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
 
-.contenido-carta h2 {
-    font-family: 'Dancing Script', cursive;
-    color: var(--rosa-oscuro);
-    margin: 0;
-}
-
-.contenido-carta p {
+.card .text {
     font-size: 0.9rem;
     color: #444;
-}
-
-.firma { font-weight: bold; margin-top: 10px; }
-
-/* --- Estado Abierto --- */
-.sobre-contenedor.abierto .tapa {
-    transform: rotateX(180deg);
-}
-
-.sobre-contenedor.abierto .carta {
-    transform: translateY(-130px);
-    height: 260px;
-}
-
-.indicador {
     text-align: center;
-    color: var(--blanco);
-    margin-top: 25px;
-    font-weight: bold;
-    animation: latido 1.5s infinite;
 }
 
-@keyframes latido {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.card h2 { font-family: 'Dancing Script', cursive; color: #c9184a; margin: 0; }
+.love { font-weight: bold; margin-top: 10px; color: #ff4d6d; }
+
+/* Efecto de apertura */
+.envelope-wrapper.open .top {
+    transform: rotateX(180deg);
+    z-index: 1;
 }
+
+.envelope-wrapper.open .card {
+    transform: translateY(-120px);
+    z-index: 5;
+    height: 220px;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: #c9184a;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: 0.4s 0.2s;
+    z-index: 6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #c9184a;
+    border-radius: 50%;
+}
+
+.heart::before { left: -15px; }
+.heart::after { top: -15px; }
+
+.envelope-wrapper.open .heart {
+    transform: translate(-50%, -150px) rotate(45deg) scale(0);
+}
+
+.hint { text-align: center; color: #c9184a; margin-top: 40px; font-weight: 600; }
