@@ -3,50 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Negro ❤️</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>¡Feliz Cumpleaños Amor!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="main-content">
-        <h1 class="title">Feli Pumpe Negro 🎂</h1>
 
-        <div class="game-wrapper">
-            <div id="world">
-                <div id="player">
-                    <div class="mullet"></div>
-                    <div class="face">🏾</div>
-                </div>
-            </div>
-            <div class="ui">
-                <div id="msg-box">Camina por el C.C. usando las flechas o botones...</div>
-                <div class="d-pad">
-                    <button onclick="move(0, -1)">▲</button>
-                    <div class="side-btns">
-                        <button onclick="move(-1, 0)">◀</button>
-                        <button onclick="move(1, 0)">▶</button>
-                    </div>
-                    <button onclick="move(0, 1)">▼</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="card camera-card">
-                <div class="video-container">
-                    <video id="video" autoplay playsinline></video>
-                    <div class="emoji-filter">🥳</div>
-                </div>
-                <button class="btn-action" onclick="lanzarConfeti()">¡CELEBRAR! 🎉</button>
-            </div>
-
-            <div class="card qr-card">
-                <div id="qrcode"></div>
-                <p>Escanea tu sorpresa</p>
-            </div>
-        </div>
+    <div class="decoraciones">
+        <div class="globo">🎈</div>
+        <div class="globo">🎈</div>
+        <div class="globo">🎈</div>
+        <div class="globo">🎈</div>
     </div>
+
+    <main class="contenedor">
+        <h1 class="titulo">¡Feliz Cumpleaños, Mi Vida!</h1>
+        
+        <div class="sobre-wrapper" onclick="abrirCarta()">
+            <div class="sobre">
+                <div class="tapa"></div>
+                <div class="corazon">❤️</div>
+                <div class="carta">
+                    <p>Escribe aquí tu mensaje más lindo... <br> Eres lo mejor que me ha pasado. ❤️</p>
+                </div>
+            </div>
+        </div>
+        
+        <p class="instruccion">Haz clic en el corazón para abrir</p>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
